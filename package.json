@@ -81,7 +81,7 @@
     "vinyl-fs": "2.4.3",
     "watchify": "^3.2.2",
     "webpack": "^1.13.1",
-    "webworkify-webpack": "^1.1.3"
+    "webworkify-webpack": "git@github.com:ReLrO/webworkify-webpack",
   },
   "browserify": {
     "transform": [

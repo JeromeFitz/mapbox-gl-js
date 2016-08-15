@@ -66,6 +66,7 @@ Dispatcher.prototype = {
 
     remove: function() {
         for (var i = 0; i < this.actors.length; i++) {
+            this.actors[i].target.removeEventListener('message', this.actors[i].receive);
             this.actors[i].target.terminate();
         }
         this.actors = [];

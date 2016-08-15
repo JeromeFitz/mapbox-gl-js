@@ -17,6 +17,7 @@ function Actor(target, parent) {
     this.parent = parent;
     this.callbacks = {};
     this.callbackID = 0;
+    this.first = true;
     this.receive = this.receive.bind(this);
     this.target.addEventListener('message', this.receive, false);
 }
@@ -25,6 +26,12 @@ Actor.prototype.receive = function(message) {
     var data = message.data,
         id = data.id,
         callback;
+    if (this.first) {
+        // revoke the Object URL that was used to create this worker, so as
+        // not to leak it
+        URL.revokeObjectURL(this.target.objectUrl);
+        this.first = false;
+    }
 
     if (data.type === '<response>') {
         callback = this.callbacks[data.id];
